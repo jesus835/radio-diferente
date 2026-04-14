@@ -1,0 +1,1431 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radio Diferente Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: #0d0f17;
+      color: #fff;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    input, textarea {
+      -webkit-user-select: text;
+      user-select: text;
+      caret-color: auto;
+    }
+    a:focus,
+    a:focus-visible,
+    button:focus,
+    button:focus-visible,
+    input:focus,
+    input:focus-visible,
+    textarea:focus,
+    textarea:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    a, button, input, textarea, div {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero {
+      min-height: 83vh;
+      position: relative;
+      overflow: visible;
+      background-image:
+        linear-gradient(rgba(46, 20, 92, 0.62), rgba(26, 15, 57, 0.76)),
+        url("wp-content/uploads/sites/55/2025/11/black-men-making-radio-show-at-home-2025-02-20-02-30-30-utc-TP64AJ6.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://i.imgur.com/OEIhGcM.png") center 11%/52% auto no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 16px;
+      transform: scale(1.25);
+      transform-origin: top center;
+      position: relative;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #f8f8ff;
+      font-size: 14px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .menu-toggle {
+      display: none;
+    }
+    .menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .menu-btn span {
+      width: 18px;
+      height: 2px;
+      background: #fff;
+      display: block;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .menu a {
+      color: inherit;
+      text-decoration: none;
+      opacity: .92;
+    }
+    .menu a.active {
+      color: #ff3dff;
+      border-bottom: 2px solid #ff3dff;
+      padding-bottom: 5px;
+    }
+    .btn-download {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2fae67;
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .btn-download img {
+      height: 34px;
+      width: auto;
+      display: block;
+      border-radius: 18px;
+    }
+    .center {
+      min-height: calc(83vh - 84px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12vh 0 18vh;
+    }
+    .hero-content {
+      transform: scale(1.1);
+      transform-origin: center center;
+    }
+    .hero-copy {
+      transform: translateY(10%);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(244, 244, 255, 0.92);
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 4px 12px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #178FE8;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 6.2vw, 68px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .sub {
+      margin: 18px auto 0;
+      max-width: 740px;
+      color: rgba(244, 244, 255, 0.86);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .actions {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      transform: none;
+    }
+    .btn-listen {
+      background: linear-gradient(90deg, #fb2fff, #8629ff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 16px 30px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 12px 24px rgba(120, 20, 255, 0.28);
+    }
+    .btn-play {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      color: #6a2cff;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .brands {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      margin-top: 0;
+    }
+    .brands-left {
+      background: #7c15cb;
+      min-height: 105px;
+      padding: 27px 22px;
+      font-size: 32px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brands-strip {
+      background: #c5d93f;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 105px;
+      padding: 23px 20px;
+    }
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      transform: translateX(-5%);
+    }
+    .ticker-group {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding-right: 0;
+    }
+    .ticker-group img {
+      height: 41px;
+      width: auto;
+      opacity: 0.95;
+      flex: 0 0 auto;
+    }
+    .ticker-logo {
+      height: 105px;
+      padding: 0 40px 0 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #10131f;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      text-decoration: none;
+    }
+    .ticker-logo svg {
+      width: 54px;
+      height: 54px;
+      display: block;
+    }
+    .ticker-logo span {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .ticker-logo.facebook {
+      padding-right: 34px;
+    }
+    .live-section {
+      display: none;
+      background: transparent;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      margin: 18px auto 0;
+      width: min(720px, 92vw);
+      backdrop-filter: blur(4px);
+      text-align: left;
+      transform: translateY(55%);
+    }
+    .live-label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .live-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+    .live-now-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #141a2d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .live-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1d2440;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .live-thumb img {
+      width: 72%;
+      height: 72%;
+      object-fit: cover;
+      display: block;
+    }
+    .live-meta { flex: 1; min-width: 0; }
+    .live-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(235, 4, 0, 0.15);
+      color: #ff8a86;
+      border: 1px solid rgba(235, 4, 0, 0.3);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #eb0400;
+    }
+    .live-prog-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .live-prog-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .waveform {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+    }
+    .wave-bar {
+      width: 3px;
+      height: var(--h, 12px);
+      background: #9147ff;
+      border-radius: 2px;
+      animation: wave var(--dur, .6s) ease-in-out infinite alternate;
+    }
+    @keyframes wave {
+      from { transform: scaleY(0.45); opacity: 0.65; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+    .live-play-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      cursor: pointer;
+      background: #9147ff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .player-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 120;
+      background: #070a14;
+      opacity: 0;
+      transition: opacity .26s ease;
+    }
+    .player-modal.is-open { display: block; opacity: 1; }
+    .player-card {
+      width: 100%;
+      height: 100dvh;
+      background:
+        linear-gradient(180deg, rgba(18, 22, 34, 1) 0%, rgba(10, 14, 24, 1) 38%, rgba(7, 10, 20, 1) 100%),
+        url("wp-content/uploads/sites/55/2025/11/black-men-making-radio-show-at-home-2025-02-20-02-30-30-utc-TP64AJ6-768x512.jpg") top center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 22px 28px;
+      transform: translateY(22px) scale(.985);
+      transition: transform .32s cubic-bezier(.2,.8,.2,1);
+    }
+    .player-modal.is-open .player-card { transform: translateY(0) scale(1); }
+    .player-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .player-icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .player-now {
+      font-size: 16px;
+      font-weight: 700;
+      opacity: .95;
+    }
+    .player-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .player-disc {
+      width: min(42vw, 196px);
+      height: min(42vw, 196px);
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: url("https://i.imgur.com/OEIhGcM.png") center/80% auto no-repeat;
+      box-shadow: 0 16px 40px rgba(0,0,0,.5);
+      border: 3px solid rgba(255,255,255,.14);
+    }
+    .player-info {
+      text-align: center;
+      margin-top: 22px;
+    }
+    .player-title {
+      font-size: clamp(24px, 6.5vw, 36px);
+      font-weight: 800;
+      margin: 0;
+    }
+    .player-sub {
+      margin: 4px 0 0;
+      color: rgba(255,255,255,.65);
+      font-size: clamp(12px, 3.4vw, 15px);
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 34px;
+    }
+    .player-eq {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 6px;
+      height: 42px;
+    }
+    .player-eq .bar {
+      width: 6px;
+      height: 14px;
+      border-radius: 3px;
+      background: #c5df43;
+      animation: eq-move var(--d, .65s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+      opacity: .95;
+    }
+    @keyframes eq-move {
+      from { transform: scaleY(.4); }
+      to { transform: scaleY(1.1); height: var(--h, 22px); }
+    }
+    .player-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      background: rgba(255,255,255,.1);
+      font-size: 18px;
+    }
+    .player-btn.main {
+      width: 66px;
+      height: 66px;
+      background: #c5df43;
+      color: #11151f;
+      font-size: 26px;
+      font-weight: 800;
+      transform: translateY(20%);
+    }
+
+    .stream-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 130;
+      opacity: 0;
+      transition: opacity .26s ease;
+    }
+    .stream-modal.is-open { display: block; opacity: 1; }
+    .stream-root {
+      background: #0e0e10;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #efeff1;
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0;
+      transform: translateY(24px) scale(.985);
+      transition: transform .32s cubic-bezier(.2,.8,.2,1);
+    }
+    .stream-modal.is-open .stream-root { transform: translateY(0) scale(1); }
+    .s-video-wrap { position: relative; background: #000; aspect-ratio: 16/9; flex: 1; min-height: 0; width: 100%; }
+    .s-video-el {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+    .s-video-el:fullscreen,
+    .s-video-el:-webkit-full-screen {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: #000;
+    }
+    .s-vid-top { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; align-items: center; justify-content: flex-end; }
+    .s-live-badge { background: #eb0400; color: #fff; font-size: 16.5px; font-weight: 700; padding: 3px 12px; border-radius: 6px; }
+    .s-viewer-count { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,.55); border-radius: 9px; padding: 5px 12px; font-size: 18px; color: #efeff1; }
+    .s-dot-red { width: 10.5px; height: 10.5px; border-radius: 50%; background: #eb0400; }
+    
+
+    .s-stream-info { padding: 10px 14px 8px; border-bottom: .5px solid #2a2a2e; flex-shrink: 0; width: 100%; }
+    .s-info-row { display: flex; align-items: center; gap: 10px; }
+    .s-avatar { width: 38px; height: 38px; border-radius: 50%; background: #0f2342; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0; border: 2px solid #0f2342; }
+    .s-avatar img { width: 80%; height: 80%; object-fit: cover; display: block; border-radius: 50%; }
+    .s-info-main { flex: 1; min-width: 0; }
+    .s-stream-title { font-size: 13px; font-weight: 600; color: #efeff1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .s-channel-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+    .s-channel-name { font-size: 12px; color: #bf94ff; font-weight: 500; }
+    .s-followers-tag { font-size: 11px; color: #adadb8; }
+    .s-info-actions { display: flex; gap: 6px; align-items: center; }
+    .s-btn-follow { background: #9147ff; color: #fff; border: none; border-radius: 6px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .s-btn-sub { background: transparent; color: #bf94ff; border: 1.5px solid #9147ff; border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .s-mobile-note { display: none; }
+
+    @media (min-width: 981px) {
+      .s-video-wrap {
+        aspect-ratio: auto;
+        height: auto;
+      }
+      .s-video-el {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .contact-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 140;
+      background: rgba(7, 10, 20, 0.82);
+      opacity: 0;
+      transition: opacity .26s ease;
+    }
+    .contact-modal.is-open { display: block; opacity: 1; }
+    .contact-dialog {
+      width: min(92vw, 520px);
+      margin: 8vh auto 0;
+      background: #101624;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+      transform: translateY(20px) scale(.98);
+      transition: transform .28s ease;
+    }
+    .contact-modal.is-open .contact-dialog { transform: translateY(0) scale(1); }
+    .contact-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .contact-title {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .contact-text {
+      margin: 0;
+      color: rgba(244,244,255,.78);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(244,244,255,.58);
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 108px;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      background: #2fae67;
+    }
+
+    @media (max-width: 980px) {
+      .live-section { display: block; }
+      html, body { height: 100dvh; overflow: hidden; }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .hero {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        background-image:
+          linear-gradient(rgba(46, 20, 92, 0.62), rgba(26, 15, 57, 0.76)),
+          url("https://i.imgur.com/L8ELgAK.png");
+        background-position: 58% center;
+      }
+      .container {
+        width: 94%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .topbar {
+        transform: none;
+        padding: 14px 0;
+        gap: 10px;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .brand { font-size: clamp(18px, 5vw, 22px); order: 1; }
+      .menu-btn {
+        display: inline-flex;
+        order: 0;
+      }
+      .menu {
+        display: flex;
+        order: 3;
+        width: min(280px, 78vw);
+        flex-direction: column;
+        gap: 14px;
+        font-size: 16px;
+        margin-top: 0;
+        background: rgba(8, 10, 20, 0.96);
+        border-right: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 0;
+        padding: 80px 18px 18px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 60;
+        transform: translateX(-102%);
+        transition: transform 0.28s ease;
+        backdrop-filter: blur(5px);
+      }
+      .menu a {
+        padding: 8px 2px;
+        font-size: 1.5em;
+      }
+      .menu-toggle:checked ~ .menu {
+        transform: translateX(0);
+      }
+      .menu-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.42);
+        z-index: 50;
+      }
+      .menu-toggle:checked ~ .menu-overlay {
+        display: block;
+      }
+      .menu-toggle:checked + .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .menu-toggle:checked + .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle:checked + .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .btn-download {
+        order: 2;
+        margin-left: auto;
+        padding: 8px 14px;
+        font-size: clamp(10px, 2.8vw, 13px);
+      }
+      .center {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2vh 0;
+      }
+      .hero-content { transform: none; }
+      h1 {
+        font-size: clamp(22px, 7vw, 38px);
+        line-height: 1.1;
+      }
+      .sub {
+        max-width: 100%;
+        font-size: clamp(11px, 3.2vw, 14px);
+        line-height: 1.35;
+        margin-top: 10px;
+      }
+      .actions {
+        transform: none;
+        margin-top: 14px;
+        gap: 12px;
+      }
+      .btn-listen {
+        padding: 10px 18px;
+        font-size: clamp(12px, 3.4vw, 15px);
+      }
+      .btn-play { font-size: clamp(12px, 3.4vw, 15px); }
+      .circle {
+        width: clamp(30px, 8vw, 40px);
+        height: clamp(30px, 8vw, 40px);
+        font-size: clamp(12px, 3vw, 16px);
+      }
+      .brands {
+        grid-template-columns: 1fr;
+        flex-shrink: 0;
+      }
+      .stream-root {
+        height: 100dvh;
+        overflow-y: auto;
+      }
+      .s-video-wrap {
+        order: 1;
+      }
+      .s-stream-info {
+        order: 2;
+        padding: 10px 12px 8px;
+      }
+      .s-mobile-note {
+        display: block;
+        order: 3;
+        margin: 12px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(145,71,255,.16), rgba(15,35,66,.88));
+        color: rgba(239,239,241,.92);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .s-info-row {
+        gap: 8px;
+      }
+      .s-video-wrap {
+        flex: 0 0 auto;
+        width: 100%;
+        aspect-ratio: 16/9;
+        max-height: min(52dvh, 340px);
+      }
+      .s-video-el {
+        object-fit: contain;
+      }
+      .s-vid-top {
+        top: 8px;
+        left: 10px;
+        right: 10px;
+      }
+      .s-live-badge {
+        font-size: 12px;
+        padding: 3px 9px;
+        border-radius: 5px;
+      }
+      .s-viewer-count {
+        gap: 6px;
+        padding: 4px 10px;
+        font-size: 13px;
+        border-radius: 7px;
+      }
+      .s-dot-red {
+        width: 8px;
+        height: 8px;
+      }
+      .s-btn-follow {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+      .brands-left {
+        min-height: 0;
+        padding: 8px 12px;
+        font-size: clamp(14px, 4.2vw, 20px);
+        text-align: center;
+      }
+      .brands-strip {
+        min-height: 0;
+        padding: 8px 10px;
+      }
+      .ticker-track {
+        justify-content: center;
+        transform: translateX(2%);
+      }
+      .contact-dialog {
+        width: min(94vw, 520px);
+        margin-top: 6vh;
+        padding: 22px 18px;
+      }
+      .contact-item {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .ticker-group { gap: 18px; padding-right: 18px; }
+      .ticker-group img { height: clamp(22px, 6vw, 34px); }
+      .ticker-logo {
+        height: 35px;
+        padding: 0 13px 0 8px;
+      }
+      .ticker-logo svg {
+        width: 18px;
+        height: 18px;
+      }
+      .ticker-logo span {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" id="inicio">
+    <div class="container">
+      <header class="topbar">
+        <a class="brand" href="#">
+          <img src="https://i.imgur.com/gVrNwHU.png" alt="Radio Diferente" />
+        </a>
+        <input class="menu-toggle" id="menu-toggle" type="checkbox" />
+        <label class="menu-btn" for="menu-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <nav class="menu">
+          <a class="active" href="#inicio">Inicio</a>
+          <a href="#" id="menu-radio">Radio</a>
+          <a href="#" id="menu-tv">TV</a>
+          <a href="https://wa.me/50250366895" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="#" id="menu-contacto">Contacto</a>
+        </nav>
+        <label class="menu-overlay" for="menu-toggle" aria-hidden="true"></label>
+        <a class="btn-download" href="https://wa.me/50250366895" target="_blank" rel="noopener noreferrer">
+          WhatsApp
+        </a>
+      </header>
+      <div class="center">
+        <div class="hero-content">
+          <div class="hero-copy">
+            <div class="badge"><span class="badge-dot"></span>Medios Digitales Cahab&oacute;n</div>
+            <h1>Tu conexi&oacute;n con la comunidad guatemalteca</h1>
+            <p class="sub">
+              Estamos entrando a una era digital donde la mayor&iacute;a de personas est&aacute;n conectadas la mayor parte de su tiempo. Atendemos esta herramienta para ser &uacute;tiles a la poblaci&oacute;n guatemalteca &mdash; seguimos avanzando cada d&iacute;a.
+            </p>
+            <div class="actions">
+              <a class="btn-listen" href="#" id="open-player">Escuchar Ahora</a>
+              <a class="btn-play" href="#" id="open-stream"><span class="circle">&#9658;</span> Ver en Vivo</a>
+            </div>
+          </div>
+          <section class="live-section">
+            <div class="live-label">En vivo</div>
+            <h2 class="live-title">Transmitiendo ahora</h2>
+            <div class="live-now-card">
+              <div class="live-thumb">
+                <img src="https://i.imgur.com/ZfyOwVy.png" alt="En vivo" />
+              </div>
+              <div class="live-meta">
+                <div class="live-tag"><span class="live-dot"></span>EN VIVO</div>
+                <div class="live-prog-name">Radio Diferente Online</div>
+                <div class="live-prog-sub">la mejor programacion 24/7</div>
+                <div class="waveform">
+                  <div class="wave-bar" style="--dur:.5s;--h:16px"></div>
+                  <div class="wave-bar" style="--dur:.7s;--h:22px"></div>
+                  <div class="wave-bar" style="--dur:.4s;--h:10px"></div>
+                  <div class="wave-bar" style="--dur:.9s;--h:20px"></div>
+                  <div class="wave-bar" style="--dur:.6s;--h:14px"></div>
+                  <div class="wave-bar" style="--dur:.5s;--h:18px"></div>
+                  <div class="wave-bar" style="--dur:.8s;--h:8px"></div>
+                  <div class="wave-bar" style="--dur:.6s;--h:20px"></div>
+                  <div class="wave-bar" style="--dur:.4s;--h:12px"></div>
+                  <div class="wave-bar" style="--dur:.7s;--h:16px"></div>
+                </div>
+              </div>
+              <button class="live-play-btn" id="live-open-player">&#9658;</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="brands">
+    <div class="brands-left">Encuentranos y escuchanos en:</div>
+    <div class="brands-strip">
+            <div class="ticker-track">
+        <div class="ticker-group">
+          <a class="ticker-logo" aria-label="Instagram" href="https://www.instagram.com/radiodiferenteonline?igsh=MXFoM29kbWt3bWVwYg==" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
+              <defs>
+                <linearGradient id="igGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FEDA75"/>
+                  <stop offset="35%" stop-color="#FA7E1E"/>
+                  <stop offset="65%" stop-color="#D62976"/>
+                  <stop offset="100%" stop-color="#962FBF"/>
+                </linearGradient>
+              </defs>
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#igGradient)"/>
+              <circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="1.8"/>
+              <circle cx="17.2" cy="6.8" r="1.2" fill="#fff"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+          <a class="ticker-logo" aria-label="TikTok" href="https://www.tiktok.com/@radiodiferenteonline?_r=1&_t=ZS-95WOEhXNCMO" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
+              <path fill="#000000" d="M16.6 0h-3.2v16.1a2.6 2.6 0 1 1-2.6-2.6c.3 0 .7.1 1 .2v-3.3a5.9 5.9 0 1 0 5.9 5.9V8.1A9.4 9.4 0 0 0 23.2 10V6.8a6.2 6.2 0 0 1-3.8-1.3A6.3 6.3 0 0 1 16.6 0"/>
+              <path fill="#25F4EE" d="M17.7 8.1A9.4 9.4 0 0 0 23.2 10V6.8a6.5 6.5 0 0 1-1.8-.5v2.4a9.4 9.4 0 0 1-5.5-1.9v8.2a5.9 5.9 0 0 1-9.2 4.9 5.9 5.9 0 0 0 10.9-3.2z"/>
+              <path fill="#FE2C55" d="M10.8 10.4v2.5a2.6 2.6 0 1 0 1.8 2.5V7.2a6.3 6.3 0 0 0 3.7 1.2V5.9A6.3 6.3 0 0 1 12.6 2v8.2a2.6 2.6 0 0 0-1.8-.7"/>
+            </svg>
+            <span>TikTok</span>
+          </a>
+          <a class="ticker-logo facebook" aria-label="Facebook" href="https://www.facebook.com/share/18Zpt7qQmh/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
+              <path fill="#1877F2" d="M24 12a12 12 0 1 0-13.88 11.86v-8.39H7.08V12h3.04V9.36c0-3 1.79-4.66 4.52-4.66 1.31 0 2.68.23 2.68.23v2.95H15.8c-1.5 0-1.97.93-1.97 1.89V12h3.35l-.54 3.47h-2.81v8.39A12 12 0 0 0 24 12"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="player-modal" id="player-modal" aria-hidden="true">
+    <div class="player-card" role="dialog" aria-modal="true" aria-label="Reproductor de audio">
+      <div class="player-top">
+        <button class="player-icon-btn" id="close-player" aria-label="Cerrar reproductor">&#8592;</button>
+        <div class="player-now">Reproduciendo</div>
+        <button class="player-icon-btn" aria-label="Favorito">&#9825;</button>
+      </div>
+      <div class="player-center">
+        <div class="player-disc"></div>
+        <div class="player-info">
+          <h3 class="player-title">Radio Diferente</h3>
+          <p class="player-sub">En vivo</p>
+          <button class="player-btn main" id="audio-toggle" aria-label="Pausar">&#9208;</button>
+          <div class="player-eq" aria-hidden="true">
+            <span class="bar" style="--h:24px;--d:.45s;--delay:.0s"></span>
+            <span class="bar" style="--h:36px;--d:.70s;--delay:.1s"></span>
+            <span class="bar" style="--h:20px;--d:.55s;--delay:.2s"></span>
+            <span class="bar" style="--h:40px;--d:.80s;--delay:.15s"></span>
+            <span class="bar" style="--h:28px;--d:.60s;--delay:.05s"></span>
+            <span class="bar" style="--h:34px;--d:.72s;--delay:.18s"></span>
+            <span class="bar" style="--h:18px;--d:.50s;--delay:.12s"></span>
+          </div>
+        </div>
+      </div>
+      <audio id="radio-audio" playsinline preload="none"></audio>
+    </div>
+  </div>
+
+  <div class="stream-modal" id="stream-modal" aria-hidden="true">
+    <div class="stream-root" role="dialog" aria-modal="true" aria-label="Stream en vivo">
+      <div class="s-stream-info">
+        <div class="s-info-row">
+          <div class="s-avatar"><img src="https://i.imgur.com/OEIhGcM.png" alt="Radio Diferente" /></div>
+          <div class="s-info-main">
+            <div class="s-stream-title">Radio Diferente en vivo</div>
+            <div class="s-channel-row">
+              <span class="s-channel-name">codex Radios</span>
+              <span class="s-followers-tag">la mejor programacion</span>
+            </div>
+          </div>
+          <div class="s-info-actions">
+            <button class="s-btn-follow" id="close-stream-btn">Volver</button>
+          </div>
+        </div>
+      </div>
+      <div class="s-mobile-note">Streaming en vivo, se&ntilde;al activa y una experiencia pensada para escucharse y verse bien desde cualquier celular.</div>
+      <div class="s-video-wrap">
+        <video class="s-video-el" id="stream-video" playsinline controls></video>
+        <div class="s-vid-top">
+          <div class="s-viewer-count"><div class="s-dot-red"></div><span id="viewers-count">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-modal" id="contact-modal" aria-hidden="true">
+    <div class="contact-dialog" role="dialog" aria-modal="true" aria-label="Contacto">
+      <div class="contact-top">
+        <h3 class="contact-title">Contacto</h3>
+        <button class="player-icon-btn" id="close-contact" aria-label="Cerrar contacto">&times;</button>
+      </div>
+      <p class="contact-text">Radio Diferente, invadiendo tu mente. Comun&iacute;cate con Medios Digitales Cahab&oacute;n para consultas, alianzas, cobertura de eventos o apoyo en transmisiones digitales.</p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">+502 5036 6895</div>
+          </div>
+          <a class="contact-link" href="https://wa.me/50250366895" target="_blank" rel="noopener noreferrer">Abrir</a>
+        </div>
+        <div class="contact-item">
+          <div>
+            <div class="contact-label">Correo</div>
+            <div class="contact-value">radiodiferenteinvadiendotument@gmail.com</div>
+          </div>
+          <a class="contact-link" href="mailto:radiodiferenteinvadiendotument@gmail.com">Enviar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var STREAM_M3U8 = 'https://live20.bozztv.com/giatv/giatv-codexuser2140/codexuser2140/playlist.m3u8';
+      var openBtn = document.getElementById('open-player');
+      var liveOpenPlayerBtn = document.getElementById('live-open-player');
+      var menuRadioBtn = document.getElementById('menu-radio');
+      var menuTvBtn = document.getElementById('menu-tv');
+      var menuContactBtn = document.getElementById('menu-contacto');
+      var modal = document.getElementById('player-modal');
+      var closeBtn = document.getElementById('close-player');
+      var radioAudio = document.getElementById('radio-audio');
+      var audioToggleBtn = document.getElementById('audio-toggle');
+      var contactModal = document.getElementById('contact-modal');
+      var closeContactBtn = document.getElementById('close-contact');
+      var viewersCountEl = document.getElementById('viewers-count');
+      var audioInitialized = false;
+      var hlsScriptLoading = false;
+      var hlsInstances = [];
+      var reconnectState = {};
+      var shouldAutoPlayAudio = false;
+      var shouldAutoPlayVideo = false;
+      var viewersChannel = null;
+      var viewersSyncBound = false;
+
+      function initViewersPresence() {
+        if (!viewersCountEl || viewersChannel || !window.crypto || !window.crypto.randomUUID) return;
+        import('https://esm.sh/@supabase/supabase-js@2')
+          .then(function (supabasePkg) {
+            if (!supabasePkg || !supabasePkg.createClient) return;
+            var supabase = supabasePkg.createClient(
+              'https://pjnagxnhutxbiqgjfrsp.supabase.co',
+              'sb_publishable_4fp8sipHduj2KA3KdpDldw_HNsdXytP'
+            );
+
+            viewersChannel = supabase.channel('viewers-room', {
+              config: {
+                presence: {
+                  key: window.crypto.randomUUID()
+                }
+              }
+            });
+
+            if (!viewersSyncBound) {
+              viewersChannel.on('presence', { event: 'sync' }, function () {
+                var state = viewersChannel.presenceState();
+                viewersCountEl.textContent = String(Object.keys(state).length);
+              });
+              viewersSyncBound = true;
+            }
+
+            viewersChannel.subscribe(function (status) {
+              if (status === 'SUBSCRIBED') {
+                viewersChannel.track({
+                  online_at: new Date().toISOString()
+                });
+              }
+            });
+          })
+          .catch(function () {});
+      }
+
+      function disconnectViewersPresence() {
+        if (viewersChannel && typeof viewersChannel.unsubscribe === 'function') {
+          viewersChannel.unsubscribe();
+        }
+        viewersChannel = null;
+        viewersSyncBound = false;
+        if (viewersCountEl) viewersCountEl.textContent = '0';
+      }
+
+      function loadHlsScript(cb) {
+        if (window.Hls) { cb(); return; }
+        if (hlsScriptLoading) {
+          var t = setInterval(function () {
+            if (window.Hls) { clearInterval(t); cb(); }
+          }, 120);
+          return;
+        }
+        hlsScriptLoading = true;
+        var hlsScript = document.createElement('script');
+        hlsScript.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
+        hlsScript.onload = function () { hlsScriptLoading = false; cb(); };
+        document.head.appendChild(hlsScript);
+      }
+
+      function getReconnectKey(mediaEl) {
+        return mediaEl && mediaEl.id ? mediaEl.id : 'media-' + Math.random().toString(36).slice(2);
+      }
+
+      function resetReconnect(mediaEl) {
+        var key = getReconnectKey(mediaEl);
+        if (!reconnectState[key]) reconnectState[key] = { tries: 0, timer: null };
+        reconnectState[key].tries = 0;
+        if (reconnectState[key].timer) {
+          clearTimeout(reconnectState[key].timer);
+          reconnectState[key].timer = null;
+        }
+      }
+
+      function scheduleReconnect(mediaEl, url, reason) {
+        if (!mediaEl) return;
+        var key = getReconnectKey(mediaEl);
+        if (!reconnectState[key]) reconnectState[key] = { tries: 0, timer: null };
+        if (reconnectState[key].timer) return;
+        var allowReconnect = mediaEl.id === 'radio-audio' ? shouldAutoPlayAudio : shouldAutoPlayVideo;
+        if (!allowReconnect) return;
+        reconnectState[key].tries += 1;
+        var wait = Math.min(15000, 2000 * reconnectState[key].tries);
+        reconnectState[key].timer = setTimeout(function () {
+          reconnectState[key].timer = null;
+          attachM3U8(mediaEl, url);
+          if (allowReconnect && typeof mediaEl.play === 'function') {
+            var p = mediaEl.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+        }, wait);
+        console.warn('Reconexion programada en', wait, 'ms para', key, 'motivo:', reason || 'desconocido');
+      }
+
+      function attachM3U8(mediaEl, url) {
+        if (!mediaEl) return;
+        var key = getReconnectKey(mediaEl);
+        if (!mediaEl.dataset.reconnectBound) {
+          mediaEl.addEventListener('playing', function () { resetReconnect(mediaEl); });
+          mediaEl.addEventListener('error', function () { scheduleReconnect(mediaEl, url, 'media-error'); });
+          mediaEl.dataset.reconnectBound = '1';
+        }
+
+        if (reconnectState[key] && reconnectState[key].timer) {
+          clearTimeout(reconnectState[key].timer);
+          reconnectState[key].timer = null;
+        }
+
+        if (mediaEl.canPlayType('application/vnd.apple.mpegurl')) {
+          mediaEl.src = url;
+          mediaEl.load();
+          return;
+        }
+        loadHlsScript(function () {
+          if (window.Hls && window.Hls.isSupported()) {
+            var hls = new window.Hls();
+            hls.loadSource(url);
+            hls.attachMedia(mediaEl);
+            hlsInstances.push(hls);
+            hls.on(window.Hls.Events.MANIFEST_PARSED, function () {
+              resetReconnect(mediaEl);
+            });
+            hls.on(window.Hls.Events.ERROR, function (event, data) {
+              if (data && data.fatal) {
+                try { hls.destroy(); } catch (e) {}
+                scheduleReconnect(mediaEl, url, data.type || 'hls-fatal');
+              }
+            });
+          } else {
+            mediaEl.src = url;
+            mediaEl.load();
+          }
+        });
+      }
+
+      function setAudioButtonState() {
+        if (!audioToggleBtn || !radioAudio) return;
+        audioToggleBtn.innerHTML = radioAudio.paused ? '&#9654;' : '&#9208;';
+        audioToggleBtn.setAttribute('aria-label', radioAudio.paused ? 'Reproducir' : 'Pausar');
+      }
+
+      function initRadioAudio() {
+        if (!radioAudio || audioInitialized) return;
+        audioInitialized = true;
+        attachM3U8(radioAudio, STREAM_M3U8);
+        radioAudio.addEventListener('play', setAudioButtonState);
+        radioAudio.addEventListener('pause', setAudioButtonState);
+      }
+
+      function closePlayerFn() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        shouldAutoPlayAudio = false;
+        if (radioAudio) radioAudio.pause();
+        setAudioButtonState();
+      }
+
+      function openContactFn() {
+        if (!contactModal) return;
+        contactModal.classList.add('is-open');
+        contactModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeContactFn() {
+        if (!contactModal) return;
+        contactModal.classList.remove('is-open');
+        contactModal.setAttribute('aria-hidden', 'true');
+      }
+
+      if (audioToggleBtn) {
+        audioToggleBtn.addEventListener('click', function () {
+          initRadioAudio();
+          if (!radioAudio) return;
+          if (radioAudio.paused) {
+            shouldAutoPlayAudio = true;
+            var p = radioAudio.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            shouldAutoPlayAudio = false;
+            radioAudio.pause();
+          }
+        });
+      }
+
+      if (openBtn && modal && closeBtn) {
+        openBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          initRadioAudio();
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden','false');
+          shouldAutoPlayAudio = true;
+          if (radioAudio) {
+            var p = radioAudio.play();
+            if (p && p.catch) p.catch(function () {});
+          }
+          setAudioButtonState();
+        });
+        closeBtn.addEventListener('click', closePlayerFn);
+        modal.addEventListener('click', function (e) { if (e.target === modal) closePlayerFn(); });
+      }
+      if (menuRadioBtn && openBtn) {
+        menuRadioBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openBtn.click();
+        });
+      }
+      if (liveOpenPlayerBtn && openBtn) {
+        liveOpenPlayerBtn.addEventListener('click', function () {
+          openBtn.click();
+        });
+      }
+
+      var openStream = document.getElementById('open-stream');
+      var streamModal = document.getElementById('stream-modal');
+      var streamVideo = document.getElementById('stream-video');
+      var closeStreamActionBtn = document.getElementById('close-stream-btn');
+      var streamInitialized = false;
+
+      function initStreamVideo() {
+        if (!streamVideo || streamInitialized) return;
+        streamInitialized = true;
+
+        attachM3U8(streamVideo, STREAM_M3U8);
+      }
+
+      function closeStreamFn() {
+        if (streamModal) {
+          streamModal.classList.remove('is-open');
+          streamModal.setAttribute('aria-hidden','true');
+          shouldAutoPlayVideo = false;
+          disconnectViewersPresence();
+          if (streamVideo) streamVideo.pause();
+          if (history.state && history.state.stream) history.back();
+        }
+      }
+      if (openStream && streamModal) {
+        openStream.addEventListener('click', function (e) {
+          e.preventDefault();
+          initViewersPresence();
+          initStreamVideo();
+          streamModal.classList.add('is-open');
+          streamModal.setAttribute('aria-hidden','false');
+          shouldAutoPlayVideo = true;
+          history.pushState({stream:true},'');
+          var playPromise = streamVideo && streamVideo.play ? streamVideo.play() : null;
+          if (playPromise && playPromise.catch) playPromise.catch(function () {});
+        });
+      }
+      if (menuTvBtn && openStream) {
+        menuTvBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openStream.click();
+        });
+      }
+      if (closeStreamActionBtn) {
+        closeStreamActionBtn.addEventListener('click', function () {
+          closeStreamFn();
+        });
+      }
+      if (menuContactBtn) {
+        menuContactBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openContactFn();
+        });
+      }
+      if (closeContactBtn) closeContactBtn.addEventListener('click', closeContactFn);
+      if (contactModal) {
+        contactModal.addEventListener('click', function (e) {
+          if (e.target === contactModal) closeContactFn();
+        });
+      }
+      window.addEventListener('popstate', function () { if (streamModal && streamModal.classList.contains('is-open')) closeStreamFn(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closePlayerFn();
+          closeStreamFn();
+          closeContactFn();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
+
