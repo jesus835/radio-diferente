@@ -1387,6 +1387,8 @@
 
   <script>
     (function () {
+      /** Poner en true para volver a activar el contador en tiempo real (Supabase presence). */
+      var VIEWERS_COUNTER_ENABLED = false;
       var STREAM_M3U8 = 'https://live20.bozztv.com/giatv/giatv-codexuser2140/codexuser2140/playlist.m3u8';
       var openBtn = document.getElementById('open-player');
       var liveOpenPlayerBtn = document.getElementById('live-open-player');
@@ -1409,7 +1411,20 @@
       var viewersChannel = null;
       var viewersSyncBound = false;
 
+      function applyViewersCounterUi() {
+        var wrap = document.querySelector('.s-viewer-count');
+        if (!wrap) return;
+        if (!VIEWERS_COUNTER_ENABLED) {
+          wrap.style.display = 'none';
+          wrap.setAttribute('aria-hidden', 'true');
+        } else {
+          wrap.style.display = '';
+          wrap.setAttribute('aria-hidden', 'false');
+        }
+      }
+
       function initViewersPresence() {
+        if (!VIEWERS_COUNTER_ENABLED) return;
         if (!viewersCountEl || viewersChannel || !window.crypto || !window.crypto.randomUUID) return;
         import('https://esm.sh/@supabase/supabase-js@2')
           .then(function (supabasePkg) {
@@ -1447,6 +1462,7 @@
       }
 
       function disconnectViewersPresence() {
+        if (!VIEWERS_COUNTER_ENABLED) return;
         if (viewersChannel && typeof viewersChannel.unsubscribe === 'function') {
           viewersChannel.unsubscribe();
         }
@@ -1646,6 +1662,8 @@
           if (history.state && history.state.stream) history.back();
         }
       }
+      applyViewersCounterUi();
+
       if (openStream && streamModal) {
         openStream.addEventListener('click', function (e) {
           e.preventDefault();
